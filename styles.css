@@ -20,10 +20,9 @@ h1{font-size:2rem;color:#3b2243;margin:8px 0}
 .choices{position:relative;height:140px;display:flex;align-items:center;justify-content:center;gap:24px}
 .choices button{padding:12px 26px;border-radius:999px;border:0;font-size:1rem;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.08);transition:transform .15s ease,opacity .2s}
 .yes{background:linear-gradient(135deg,var(--pink),#ff5c97);color:white}
-.no{position:absolute;left:60%;top:50%;transform:translate(-50%,-50%);background:#fff;background:linear-gradient(180deg,#fff,#fff9);border:1px solid #f1d6e1;color:#b12653;padding:10px 20px}
-.choices{position:relative;height:140px;display:flex;align-items:center;justify-content:center;gap:24px}
-.choices button{padding:12px 26px;border-radius:999px;border:0;font-size:1rem;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.08);transition:transform .15s ease,opacity .2s}
-.yes{background:linear-gradient(135deg,var(--pink),#ff5c97);color:white}
+.no{position:absolute;left:60%;top:50%;transform:translate(-50%,-50%);background:linear-gradient(180deg,#fff,#fff9);border:1px solid #f1d6e1;color:#b12653;padding:10px 20px;transition:all 0.3s ease}
+.no:hover{animation:moveNo 0.5s ease-in-out}
+.no:focus{outline:none}
 
 .message{margin-top:14px;color:#b12653;font-weight:600}
 .accepted{margin-top:18px;color:var(--pink)}
@@ -89,11 +88,14 @@ h1{font-size:2rem;color:#3b2243;margin:8px 0}
 /* small screens */
 @media (max-width:420px){.top .doll{font-size:56px} .card{padding:20px}}
 
-/* playful wiggle when No is blocked */
-@keyframes wiggle{0%{transform:translate(-50%,-50%) rotate(0)}25%{transform:translate(-50%,-50%) rotate(-8deg)}50%{transform:translate(-50%,-50%) rotate(8deg)}75%{transform:translate(-50%,-50%) rotate(-6deg)}100%{transform:translate(-50%,-50%) rotate(0)}}
-/* Removed .no styles and locked animation rule */
-/* .no{...} */
-/* .no.locked{...} */
+/* playful NO button movement animation */
+@keyframes moveNo{
+  0%{left:60%;top:50%}
+  25%{left:20%;top:15%}
+  50%{left:75%;top:70%}
+  75%{left:35%;top:25%}
+  100%{left:60%;top:50%}
+}
 
 /* confetti-like sparkle on accepted */
 .result h2{font-size:1.6rem;margin-bottom:6px}

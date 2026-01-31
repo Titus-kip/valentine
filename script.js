@@ -35,6 +35,16 @@ angular.module('valentineApp',[])
     $scope.scene = 'why';
   };
 
+  $scope.moveNoButton = function(){
+    var noBtn = document.getElementById('noButton');
+    if(noBtn){
+      var randomLeft = Math.random() * 80 + 10;
+      var randomTop = Math.random() * 80 + 10;
+      noBtn.style.left = randomLeft + '%';
+      noBtn.style.top = randomTop + '%';
+    }
+  };
+
   $scope.saveReason = function(){
     if($scope.whyReason.trim()){
       $scope.reasons.push($scope.whyReason);

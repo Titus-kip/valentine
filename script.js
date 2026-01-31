@@ -83,12 +83,6 @@ angular.module('valentineApp',[])
 
   $scope.closeRedeemModal = function(){
     $scope.redeemModal = {open:false, title:'', message:''};
-    } else {
-      $scope.message = 'Thank you! 💕';
-      $timeout(function(){
-        $scope.scene = 'accepted';
-      }, 600);
-    }
   };
 
   $scope.lightboxOpen = false;

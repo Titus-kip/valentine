@@ -75,6 +75,28 @@
       </div>
     </section>
 
+    <!-- Voucher scene -->
+    <section class="scene voucher" ng-show="scene==='voucher'">
+      <div class="top">
+        <h1>Vouchers</h1>
+        <p class="subtitle">Redeem one of these special treats 💝</p>
+      </div>
+      <div class="voucher-grid">
+        <div class="ticket" ng-repeat="v in voucherList">
+          <div class="ticket-left">
+            <h3>{{v.title}}</h3>
+            <p>{{v.description}}</p>
+          </div>
+          <div class="ticket-sep"></div>
+          <div class="ticket-right" ng-class="{redeemed: redeemed[v.id]}" ng-click="redeem(v.id)" ng-disabled="redeemed[v.id]">
+            <span ng-if="!redeemed[v.id]">Redeem</span>
+            <span ng-if="redeemed[v.id]">Redeemed</span>
+          </div>
+        </div>
+      </div>
+      <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
+    </section>
+
     <!-- Photo gallery scene -->
     <section class="scene photo-gallery" ng-show="scene==='photo-gallery'">
       <div class="top">
@@ -121,6 +143,14 @@ You are my safe place, my home, my everything. In a world that can be so cold, y
       </div>
       <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
     </section>
+    <!-- Redeem modal -->
+    <div class="redeem-modal" ng-show="redeemModal.open" ng-click="closeRedeemModal()">
+      <div class="redeem-inner" ng-click="$event.stopPropagation()">
+        <h3>{{redeemModal.title}}</h3>
+        <p>{{redeemModal.message}}</p>
+        <button class="back-btn" ng-click="closeRedeemModal()">Close</button>
+      </div>
+    </div>
 
     <!-- Lightbox modal -->
     <div class="lightbox" ng-show="lightboxOpen" ng-click="closeLightbox()">

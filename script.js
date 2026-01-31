@@ -61,6 +61,36 @@ angular.module('valentineApp',[])
     }
   };
 
+  // Voucher data and redemption state
+  $scope.voucherList = [
+    {id:'cozy-movie', title:'Cozy Movie Night 🎬', description:'Blankets, snacks and your favorite movie — my treat.'},
+    {id:'hot-chocolate', title:'Hot Chocolate & Chill ☕', description:'A warm cup and a cosy moment together.'},
+    {id:'breakfast', title:'Breakfast in Bed 🥞', description:'Pancakes, coffee and slow cuddles — a morning to remember.'},
+    {id:'surprise-day', title:'Surprise Day Out 🎉', description:'I plan a whole day of your favorite things.'},
+    {id:'massage', title:'Massage & Relax 💆', description:'An hour of massage and full relaxation.'}
+  ];
+
+  $scope.redeemed = JSON.parse(localStorage.getItem('redeemed')) || {};
+  $scope.redeemModal = {open:false, title:'', message:''};
+
+  $scope.redeem = function(voucherId){
+    if($scope.redeemed[voucherId]) return;
+    $scope.redeemed[voucherId] = true;
+    localStorage.setItem('redeemed', JSON.stringify($scope.redeemed));
+    var v = $scope.voucherList.find(function(x){return x.id===voucherId;});
+    $scope.redeemModal = {open:true, title: v ? v.title : 'Redeemed', message: v ? v.description : ''};
+  };
+
+  $scope.closeRedeemModal = function(){
+    $scope.redeemModal = {open:false, title:'', message:''};
+    } else {
+      $scope.message = 'Thank you! 💕';
+      $timeout(function(){
+        $scope.scene = 'accepted';
+      }, 600);
+    }
+  };
+
   $scope.lightboxOpen = false;
   $scope.selectedImage = null;
 

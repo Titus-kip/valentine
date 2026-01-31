@@ -63,6 +63,22 @@ h1{font-size:2rem;color:#3b2243;margin:8px 0}
 .gallery-item:hover,.gallery-video:hover{transform:rotate(45deg) scale(1.08)}
 .back-btn{margin-top:12px;padding:8px 16px;border-radius:8px;border:0;background:#ffdfe8;color:#94264c;cursor:pointer}
 
+/* vouchers / tickets */
+.voucher-grid{display:flex;flex-direction:column;gap:14px;width:100%;max-width:720px;margin:12px auto}
+.ticket{display:flex;align-items:center;background:#fffdfb;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+.ticket-left{padding:18px 20px;flex:1;text-align:left}
+.ticket-left h3{margin:0;color:#7a2b4a;font-size:1.05rem}
+.ticket-left p{margin:6px 0 0;color:#6a4f63;font-size:.95rem}
+.ticket-sep{width:2px;background:repeating-linear-gradient(180deg,#f3e7ea 0 6px,#fff 6px 12px);height:72px}
+.ticket-right{padding:12px 18px;background:linear-gradient(180deg,#ffdfe8,#ffccde);color:#7a2b4a;font-weight:700;cursor:pointer}
+.ticket-right.redeemed{background:#e6e6e6;color:#9b9b9b;cursor:default}
+.ticket-right.redeemed:after{content:'✓';display:block;font-weight:900;margin-top:4px}
+
+/* redeem modal */
+.redeem-modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:1200}
+.redeem-inner{background:#fff;padding:24px;border-radius:12px;max-width:420px;text-align:center;position:relative;box-shadow:0 20px 40px rgba(0,0,0,0.25)}
+.redeem-inner h3{margin:0 0 8px;color:#7a2b4a}
+.redeem-inner p{margin:0 0 18px;color:#6a4f63}
 /* lightbox */
 .lightbox{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:1000}
 .lightbox-content{position:relative;max-width:90%;max-height:90%;display:flex;align-items:center;justify-content:center}

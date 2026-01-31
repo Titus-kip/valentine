@@ -32,7 +32,7 @@ angular.module('valentineApp',[])
   $scope.accept = function(){
     $scope.accepted = true;
     $scope.message = '';
-    $scope.scene = 'why';
+    $scope.scene = 'gift-choice';
   };
 
   $scope.moveNoButton = function(){

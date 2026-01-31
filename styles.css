@@ -27,7 +27,10 @@ h1{font-size:2rem;color:#3b2243;margin:8px 0}
 
 .message{margin-top:14px;color:#b12653;font-weight:600}
 .accepted{margin-top:18px;color:var(--pink)}
-.hint{margin-top:18px;color:#9b7a90;font-size:.9rem}
+.hint{margin-top:18px;color:#9b7a90;font-size:.9rem;display:flex;flex-direction:column;align-items:center;gap:12px}
+
+.restart-btn{padding:8px 16px;background:#ffdfe8;color:#b12653;border:0;border-radius:6px;cursor:pointer;font-weight:600;transition:all 0.2s;font-family:inherit;font-size:0.9rem}
+.restart-btn:hover{background:#ffccde;transform:scale(1.05)}
 
 .blocked-doll{font-size:96px;opacity:.95}
 .blocked-actions .back{margin-top:14px;padding:10px 18px;border-radius:12px;border:0;background:#ffdfe8;color:#94264c}

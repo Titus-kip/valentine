@@ -111,7 +111,10 @@
       <p>You're my Valentine!</p>
     </section>
 
-    <footer class="hint">Made with love — customize me for your special someone.</footer>
+    <footer class="hint">
+      Made with love — customize me for your special someone.
+      <button class="restart-btn" ng-click="goTo('landing')" ng-show="scene !== 'landing'">↻ Restart</button>
+    </footer>
   </main>
 
   <script src="script.js"></script>

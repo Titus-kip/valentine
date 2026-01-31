@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Will you be my Valentine?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Miracle:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
 </head>
@@ -56,62 +57,6 @@
       </div>
     </section>
 
-    <!-- Voucher scene -->
-    <section class="scene vouchers" ng-show="scene==='voucher'">
-      <div class="top">
-        <h1>Choose a Voucher</h1>
-        <p class="subtitle">Pick something special for us 💝</p>
-      </div>
-      <div class="voucher-grid">
-        <div class="ticket">
-          <div class="ticket-left">
-            <h3>Cozy Movie Night</h3>
-            <p>Valid for one magical movie night with blankets, snacks, and zero distractions — just you and me.</p>
-          </div>
-          <div class="ticket-sep"></div>
-          <div class="ticket-right" ng-click="redeem('cozy-movie')" ng-class="{redeemed: redeemed['cozy-movie']}">Redeem</div>
-        </div>
-
-        <div class="ticket">
-          <div class="ticket-left">
-            <h3>Hot Chocolate & Chill</h3>
-            <p>Valid for a homemade hot chocolate delivered to you, plus a calm moment together to unwind.</p>
-          </div>
-          <div class="ticket-sep"></div>
-          <div class="ticket-right" ng-click="redeem('hot-chocolate')" ng-class="{redeemed: redeemed['hot-chocolate']}">Redeem</div>
-        </div>
-
-        <div class="ticket">
-          <div class="ticket-left">
-            <h3>Breakfast in Bed</h3>
-            <p>A morning of pancakes, coffee, and slow cuddles — served with love.</p>
-          </div>
-          <div class="ticket-sep"></div>
-          <div class="ticket-right" ng-click="redeem('breakfast')" ng-class="{redeemed: redeemed['breakfast']}">Redeem</div>
-        </div>
-
-        <div class="ticket">
-          <div class="ticket-left">
-            <h3>Surprise Day Out</h3>
-            <p>I plan a whole day of your favorite things — just say yes to the adventure.</p>
-          </div>
-          <div class="ticket-sep"></div>
-          <div class="ticket-right" ng-click="redeem('surprise-day')" ng-class="{redeemed: redeemed['surprise-day']}">Redeem</div>
-        </div>
-
-        <div class="ticket">
-          <div class="ticket-left">
-            <h3>Massage & Relax</h3>
-            <p>One hour of massage therapy by yours truly — feel the tension melt away.</p>
-          </div>
-          <div class="ticket-sep"></div>
-          <div class="ticket-right" ng-click="redeem('massage')" ng-class="{redeemed: redeemed['massage']}">Redeem</div>
-        </div>
-
-      </div>
-      <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
-    </section>
-
     <!-- Photo gallery scene -->
     <section class="scene photo-gallery" ng-show="scene==='photo-gallery'">
       <div class="top">
@@ -130,25 +75,7 @@
       <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
     </section>
 
-    <!-- Love letter scene (torn paper style) -->
-    <section class="scene love-letter" ng-show="scene==='love-letter'">
-      <div class="letter-wrap">
-        <div class="torn left">
-          <div class="torn-inner">
-            <p class="t-text">I just want you to know how much you mean to me. I love you so much in the little everyday moments and in the big ones too. You make me feel safe, happy and understood in a way no one else ever has. I'm really grateful for you, and I hope you always feel how loved you are. 💖</p>
-          </div>
-        </div>
-
-        <div class="torn right">
-          <div class="torn-inner">
-            <p class="t-text">Sometimes I look at you and I can't believe how lucky I am. You bring so much peace and warmth into my life without even trying. Even on days when everything feels stressful, thinking of you makes everything lighter. Thank you for being you. 🌹✨</p>
-          </div>
-        </div>
-
-        <div class="small-note">PS: I promise you will like it! 😘</div>
-      </div>
-      <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
-    </section>
+    <!-- Lightbox modal -->
     <div class="lightbox" ng-show="lightboxOpen" ng-click="closeLightbox()">
       <div class="lightbox-content" ng-click="$event.stopPropagation()">
         <span class="lightbox-close" ng-click="closeLightbox()">&times;</span>
@@ -156,16 +83,6 @@
         <video ng-if="isVideo(selectedImage)" controls class="lightbox-video">
           <source src="{{selectedImage}}" type="video/mp4">
         </video>
-      </div>
-    </div>
-
-    <!-- Redeem / surprise modal -->
-    <div class="redeem-modal" ng-show="redeemModal.open" ng-click="closeRedeemModal()">
-      <div class="redeem-inner" ng-click="$event.stopPropagation()">
-        <div class="confetti"></div>
-        <h3>{{redeemModal.title}}</h3>
-        <p>{{redeemModal.message}}</p>
-        <button class="back-btn" ng-click="closeRedeemModal()">Close</button>
       </div>
     </div>
 

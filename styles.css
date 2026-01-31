@@ -61,6 +61,8 @@ h1{font-size:2rem;color:#3b2243;margin:8px 0}
 .gallery-video:nth-child(even){margin-left:auto;margin-right:0}
 .gallery-item:hover,.gallery-video:hover{transform:rotate(45deg) scale(1.08)}
 .back-btn{margin-top:12px;padding:8px 16px;border-radius:8px;border:0;background:#ffdfe8;color:#94264c;cursor:pointer}
+.continue-btn{margin-top:20px;padding:10px 24px;border-radius:8px;border:0;background:linear-gradient(135deg,var(--pink),#ff5c97);color:white;cursor:pointer;font-weight:600;transition:transform 0.2s;font-family:inherit;font-size:1rem}
+.continue-btn:hover{transform:scale(1.05)}
 
 /* vouchers / tickets */
 .voucher-grid{display:flex;flex-direction:column;gap:14px;width:100%;max-width:720px;margin:12px auto}

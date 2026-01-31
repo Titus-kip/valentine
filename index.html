@@ -35,11 +35,24 @@
       </div>
 
       <div class="choices" id="playArea">
-        <button class="yes" ng-click="accept()" ng-disabled="accepted">YES</button>
-        <button class="no" id="noButton" ng-mouseenter="moveNoButton()" ng-click="moveNoButton()">NO</button>
+        <button class="yes" ng-click="accept()">YES</button>
       </div>
 
       <div class="message" ng-if="message">{{message}}</div>
+    </section>
+
+    <!-- Playful NO scene -->
+    <section class="scene playful-no" ng-show="scene==='playful-no'">
+      <div class="top">
+        <h1>Try clicking NO 😏</h1>
+        <p class="subtitle">If you can catch it...</p>
+      </div>
+
+      <div class="choices" id="playArea">
+        <button class="no" id="noButton" ng-mouseenter="moveNoButton()" ng-click="moveNoButton()">NO</button>
+      </div>
+
+      <button class="continue-btn" ng-click="goTo('gift-choice')">Continue →</button>
     </section>
 
     <!-- Gift choice scene -->

@@ -41,6 +41,24 @@
       <div class="message" ng-if="message">{{message}}</div>
     </section>
 
+    <!-- Why scene - ask for reason -->
+    <section class="scene why-scene" ng-show="scene==='why'">
+      <div class="top">
+        <h1>Tell me why 😏</h1>
+        <p class="subtitle">Give me ONE reason why you want to be my valentine...</p>
+      </div>
+      <div class="why-container">
+        <input type="text" class="why-input" ng-model="whyReason" placeholder="Type your reason here..." ng-keyup="$event.keyCode === 13 && saveReason()">
+        <button class="why-button" ng-click="saveReason()">Submit Reason 💭</button>
+      </div>
+      <div class="reasons-list" ng-if="reasons.length > 0">
+        <h3>Your reasons so far:</h3>
+        <div class="reason-item" ng-repeat="reason in reasons">
+          ✨ {{reason}}
+        </div>
+      </div>
+    </section>
+
     <!-- Blocked scene removed; only Yes path remains -->
 
     <!-- Gift choice scene -->

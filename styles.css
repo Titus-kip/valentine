@@ -38,6 +38,17 @@ h1{font-size:2rem;color:#3b2243;margin:8px 0}
 .gift-item-img{width:80px;height:80px;object-fit:cover;cursor:pointer;transition:transform .2s;border-radius:12px;background:#fff0f6;padding:8px}
 .gift-item-img:hover{transform:scale(1.1)}
 
+/* why scene */
+.why-scene{padding:20px}
+.why-container{margin:20px 0}
+.why-input{width:100%;max-width:400px;padding:12px 16px;border:2px solid #ff7aa2;border-radius:8px;font-size:1rem;font-family:inherit;outline:none}
+.why-input:focus{border-color:#ff5c97;box-shadow:0 0 10px rgba(255,122,162,0.3)}
+.why-button{padding:12px 28px;margin-top:12px;background:linear-gradient(135deg,var(--pink),#ff5c97);color:white;border:0;border-radius:8px;cursor:pointer;font-weight:600;transition:transform 0.2s}
+.why-button:hover{transform:scale(1.05)}
+.reasons-list{margin-top:20px;padding:16px;background:#fff0f6;border-radius:12px}
+.reasons-list h3{color:#7a2b4a;margin-bottom:12px}
+.reason-item{padding:8px 12px;background:white;margin:8px 0;border-radius:6px;color:#6a4f63;border-left:4px solid #ff7aa2}
+
 /* photo gallery */
 .photo-gallery{background-image:linear-gradient(rgba(255,255,255,0.4),rgba(255,255,255,0.4)),url('gallery.jpg');background-size:cover;background-position:center}
 .gallery-container{display:flex;flex-direction:column;gap:20px;padding:20px;max-width:100%}

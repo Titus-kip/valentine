@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en" ng-app="valentineApp">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Will you be my Valentine?</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+  <main class="card">
+
+    <!-- Landing / Gift scene -->
+    <section class="scene landing" ng-show="scene==='landing'">
+      <div class="top">
+        <h1>Hey my love</h1>
+        <p class="subtitle">I have a little gift for you — tap to open</p>
+      </div>
+      <div class="gift" ng-click="openGift()">
+        <img src="giftbox.jpg" alt="Gift box" class="giftbox-img">
+        <div class="tap">TAP TO OPEN</div>
+      </div>
+    </section>
+
+    <!-- Question scene (only Yes) -->
+    <section class="scene question" ng-show="scene==='question'">
+      <div class="top">
+        <h1>Will you be my Valentine?</h1>
+        <p class="subtitle">I made this just for you 💖</p>
+      </div>
+
+      <div class="center">
+        <img src="teadybear.jpg" alt="Teddy bear" class="doll-img">
+      </div>
+
+      <div class="choices" id="playArea">
+        <button class="yes" ng-click="accept()" ng-disabled="accepted">YES</button>
+      </div>
+
+      <div class="message" ng-if="message">{{message}}</div>
+    </section>
+
+    <!-- Blocked scene removed; only Yes path remains -->
+
+    <!-- Gift choice scene -->
+    <section class="scene gift-choice" ng-show="scene==='gift-choice'">
+      <div class="top">
+        <h1>Choose a gift</h1>
+        <p class="subtitle">Pick your favorite 💖</p>
+      </div>
+      <div class="gift-grid">
+        <img src="love%20letter.jpg" alt="Love letter" class="gift-item-img" ng-click="selectGift('letter')">
+        <img src="camera.jpg" alt="Camera" class="gift-item-img" ng-click="selectGift('photo')">
+        <img src="Voucher.jpg" alt="Voucher" class="gift-item-img" ng-click="selectGift('voucher')">
+        <img src="clock.jpg" alt="Clock" class="gift-item-img" ng-click="selectGift('clock')">
+      </div>
+    </section>
+
+    <!-- Voucher scene -->
+    <section class="scene vouchers" ng-show="scene==='voucher'">
+      <div class="top">
+        <h1>Choose a Voucher</h1>
+        <p class="subtitle">Pick something special for us 💝</p>
+      </div>
+      <div class="voucher-grid">
+        <div class="ticket">
+          <div class="ticket-left">
+            <h3>Cozy Movie Night</h3>
+            <p>Valid for one magical movie night with blankets, snacks, and zero distractions — just you and me.</p>
+          </div>
+          <div class="ticket-sep"></div>
+          <div class="ticket-right" ng-click="redeem('cozy-movie')" ng-class="{redeemed: redeemed['cozy-movie']}">Redeem</div>
+        </div>
+
+        <div class="ticket">
+          <div class="ticket-left">
+            <h3>Hot Chocolate & Chill</h3>
+            <p>Valid for a homemade hot chocolate delivered to you, plus a calm moment together to unwind.</p>
+          </div>
+          <div class="ticket-sep"></div>
+          <div class="ticket-right" ng-click="redeem('hot-chocolate')" ng-class="{redeemed: redeemed['hot-chocolate']}">Redeem</div>
+        </div>
+
+        <div class="ticket">
+          <div class="ticket-left">
+            <h3>Breakfast in Bed</h3>
+            <p>A morning of pancakes, coffee, and slow cuddles — served with love.</p>
+          </div>
+          <div class="ticket-sep"></div>
+          <div class="ticket-right" ng-click="redeem('breakfast')" ng-class="{redeemed: redeemed['breakfast']}">Redeem</div>
+        </div>
+
+        <div class="ticket">
+          <div class="ticket-left">
+            <h3>Surprise Day Out</h3>
+            <p>I plan a whole day of your favorite things — just say yes to the adventure.</p>
+          </div>
+          <div class="ticket-sep"></div>
+          <div class="ticket-right" ng-click="redeem('surprise-day')" ng-class="{redeemed: redeemed['surprise-day']}">Redeem</div>
+        </div>
+
+        <div class="ticket">
+          <div class="ticket-left">
+            <h3>Massage & Relax</h3>
+            <p>One hour of massage therapy by yours truly — feel the tension melt away.</p>
+          </div>
+          <div class="ticket-sep"></div>
+          <div class="ticket-right" ng-click="redeem('massage')" ng-class="{redeemed: redeemed['massage']}">Redeem</div>
+        </div>
+
+      </div>
+      <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
+    </section>
+
+    <!-- Photo gallery scene -->
+    <section class="scene photo-gallery" ng-show="scene==='photo-gallery'">
+      <div class="top">
+        <h1>Our Journey Together 💫</h1>
+        <p class="subtitle">HOW IT ALL BEGAN</p>
+      </div>
+      <div class="gallery-container">
+        <img src="camera/WhatsApp%20Image%202026-01-31%20at%203.42.07%20PM.jpeg" alt="Photo 1" class="gallery-item" ng-click="openLightbox('camera/WhatsApp%20Image%202026-01-31%20at%203.42.07%20PM.jpeg')">
+        <img src="camera/WhatsApp%20Image%202026-01-31%20at%203.42.04%20PM.jpeg" alt="Photo 2" class="gallery-item" ng-click="openLightbox('camera/WhatsApp%20Image%202026-01-31%20at%203.42.04%20PM.jpeg')">
+        <img src="camera/WhatsApp%20Image%202026-01-31%20at%203.42.05%20PM.jpeg" alt="Photo 3" class="gallery-item" ng-click="openLightbox('camera/WhatsApp%20Image%202026-01-31%20at%203.42.05%20PM.jpeg')">
+        <video controls class="gallery-video" ng-click="openLightbox('camera/WhatsApp%20Video%202026-01-31%20at%203.42.07%20PM.mp4')">
+          <source src="camera/WhatsApp%20Video%202026-01-31%20at%203.42.07%20PM.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
+    </section>
+
+    <!-- Love letter scene (torn paper style) -->
+    <section class="scene love-letter" ng-show="scene==='love-letter'">
+      <div class="letter-wrap">
+        <div class="torn left">
+          <div class="torn-inner">
+            <p class="t-text">I just want you to know how much you mean to me. I love you so much in the little everyday moments and in the big ones too. You make me feel safe, happy and understood in a way no one else ever has. I'm really grateful for you, and I hope you always feel how loved you are. 💖</p>
+          </div>
+        </div>
+
+        <div class="torn right">
+          <div class="torn-inner">
+            <p class="t-text">Sometimes I look at you and I can't believe how lucky I am. You bring so much peace and warmth into my life without even trying. Even on days when everything feels stressful, thinking of you makes everything lighter. Thank you for being you. 🌹✨</p>
+          </div>
+        </div>
+
+        <div class="small-note">PS: I promise you will like it! 😘</div>
+      </div>
+      <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
+    </section>
+    <div class="lightbox" ng-show="lightboxOpen" ng-click="closeLightbox()">
+      <div class="lightbox-content" ng-click="$event.stopPropagation()">
+        <span class="lightbox-close" ng-click="closeLightbox()">&times;</span>
+        <img ng-if="!isVideo(selectedImage)" src="{{selectedImage}}" alt="Full size" class="lightbox-image">
+        <video ng-if="isVideo(selectedImage)" controls class="lightbox-video">
+          <source src="{{selectedImage}}" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <!-- Redeem / surprise modal -->
+    <div class="redeem-modal" ng-show="redeemModal.open" ng-click="closeRedeemModal()">
+      <div class="redeem-inner" ng-click="$event.stopPropagation()">
+        <div class="confetti"></div>
+        <h3>{{redeemModal.title}}</h3>
+        <p>{{redeemModal.message}}</p>
+        <button class="back-btn" ng-click="closeRedeemModal()">Close</button>
+      </div>
+    </div>
+
+    <!-- Accepted result -->
+    <section class="scene accepted" ng-show="scene==='accepted'">
+      <h2>Yay! 💞</h2>
+      <p>You're my Valentine!</p>
+    </section>
+
+    <footer class="hint">Made with love — customize me for your special someone.</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

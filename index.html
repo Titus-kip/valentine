@@ -94,6 +94,26 @@
       <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
     </section>
 
+    <!-- Love letter scene -->
+    <section class="scene love-letter" ng-show="scene==='love-letter'">
+      <div class="letter-wrap">
+        <div class="torn left">
+          <div class="torn-inner">
+            <p class="t-text">I just want you to know how much you mean to me. I love you so much in the little everyday moments and in the big ones too. You make me feel safe, happy and understood in a way no one else ever has. I'm really grateful for you, and I hope you always feel how loved you are. 💖</p>
+          </div>
+        </div>
+
+        <div class="torn right">
+          <div class="torn-inner">
+            <p class="t-text">Sometimes I look at you and I can't believe how lucky I am. You bring so much peace and warmth into my life without even trying. Even on days when everything feels stressful, thinking of you makes everything lighter. Thank you for being you. 🌹✨</p>
+          </div>
+        </div>
+
+        <div class="small-note">PS: I promise you will like it! 😘</div>
+      </div>
+      <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
+    </section>
+
     <!-- Lightbox modal -->
     <div class="lightbox" ng-show="lightboxOpen" ng-click="closeLightbox()">
       <div class="lightbox-content" ng-click="$event.stopPropagation()">

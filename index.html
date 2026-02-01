@@ -65,8 +65,122 @@
         <img src="love%20letter.jpg" alt="Love letter" class="gift-item-img" ng-click="selectGift('letter')">
         <img src="camera.jpg" alt="Camera" class="gift-item-img" ng-click="selectGift('photo')">
         <img src="Voucher.jpg" alt="Voucher" class="gift-item-img" ng-click="selectGift('voucher')">
-        <img src="clock.jpg" alt="Clock" class="gift-item-img" ng-click="selectGift('clock')">
+        <img src="clock.jpg" alt="Clock" class="gift-item-img" ng-click="selectGift('games')">
       </div>
+    </section>
+
+    <!-- Game Hub Selection -->
+    <section class="scene game-hub" ng-show="scene==='game-hub'">
+      <div class="top">
+        <h1>30-Day Love Games 🎮</h1>
+        <p class="subtitle">Play together, challenge each other</p>
+      </div>
+      <div class="game-menu">
+        <button class="game-btn" ng-click="goTo('quick-draw')">🎨 Quick Draw</button>
+        <button class="game-btn" ng-click="goTo('love-questions')">❓ Love Questions</button>
+        <button class="game-btn" ng-click="goTo('would-you-rather')">🎲 Would You Rather</button>
+        <button class="game-btn" ng-click="goTo('daily-dare')">🎯 Daily Dare</button>
+        <button class="game-btn scoreboard-btn" ng-click="goTo('scoreboard')">🏆 Scoreboard</button>
+      </div>
+      <button class="back-btn" ng-click="goTo('gift-choice')">← Back</button>
+    </section>
+
+    <!-- Quick Draw Game -->
+    <section class="scene quick-draw" ng-show="scene==='quick-draw'">
+      <div class="top">
+        <h1>Quick Draw 🎨</h1>
+        <p class="subtitle" ng-if="!drawingMode">Draw this: <strong>{{currentDrawPrompt}}</strong></p>
+        <p class="subtitle" ng-if="drawingMode">Your turn to draw!</p>
+      </div>
+      <canvas id="drawCanvas" class="draw-canvas" ng-if="drawingMode" width="400" height="300"></canvas>
+      <div class="draw-area" ng-if="!drawingMode">
+        <p>{{guessPrompt}}</p>
+        <input type="text" ng-model="guessText" placeholder="What are they drawing?" class="guess-input">
+        <button class="game-play-btn" ng-click="submitGuess()">Submit Guess</button>
+      </div>
+      <button class="game-play-btn" ng-click="startDrawing()" ng-if="!drawingMode">Start Drawing</button>
+      <button class="game-play-btn" ng-click="finishDrawing()" ng-if="drawingMode">Done Drawing</button>
+      <button class="back-btn" ng-click="goTo('game-hub')">← Back</button>
+    </section>
+
+    <!-- Love Questions Game -->
+    <section class="scene love-questions" ng-show="scene==='love-questions'">
+      <div class="top">
+        <h1>Love Questions ❓</h1>
+        <p class="subtitle">Answer & rate responses</p>
+      </div>
+      <div class="question-card" ng-if="currentQuestion">
+        <h3>{{currentQuestion}}</h3>
+        <textarea ng-model="answerText" placeholder="Type your answer..." class="answer-textarea"></textarea>
+        <button class="game-play-btn" ng-click="submitAnswer()">Submit Answer</button>
+      </div>
+      <div class="rating-card" ng-if="partnerAnswer">
+        <h4>Partner's answer:</h4>
+        <p class="partner-answer">{{partnerAnswer}}</p>
+        <div class="star-rating">
+          <button class="star" ng-repeat="star in [1,2,3,4,5]" ng-click="rateAnswer(star)">⭐</button>
+        </div>
+      </div>
+      <button class="back-btn" ng-click="goTo('game-hub')">← Back</button>
+    </section>
+
+    <!-- Would You Rather -->
+    <section class="scene would-you-rather" ng-show="scene==='would-you-rather'">
+      <div class="top">
+        <h1>Would You Rather 🎲</h1>
+        <p class="subtitle">Choose wisely!</p>
+      </div>
+      <div class="rather-card" ng-if="currentRatherQuestion">
+        <h3>{{currentRatherQuestion.prompt}}</h3>
+        <div class="choice-buttons">
+          <button class="choice-btn choice-a" ng-click="chooseRather('a')">{{currentRatherQuestion.a}}</button>
+          <button class="choice-btn choice-b" ng-click="chooseRather('b')">{{currentRatherQuestion.b}}</button>
+        </div>
+      </div>
+      <div class="rather-results" ng-if="ratherResult">
+        <p>You chose: <strong>{{ratherResult}}</strong> +10 points!</p>
+        <button class="game-play-btn" ng-click="nextRather()">Next Question</button>
+      </div>
+      <button class="back-btn" ng-click="goTo('game-hub')">← Back</button>
+    </section>
+
+    <!-- Daily Dare -->
+    <section class="scene daily-dare" ng-show="scene==='daily-dare'">
+      <div class="top">
+        <h1>Daily Dare 🎯</h1>
+        <p class="subtitle">Day {{dareDay}} of 30</p>
+      </div>
+      <div class="dare-card" ng-if="currentDare">
+        <h3>Today's Dare:</h3>
+        <p class="dare-text">{{currentDare}}</p>
+        <button class="game-play-btn dare-complete" ng-click="completeDare()" ng-disabled="dareCompleted">{{dareCompleted ? '✓ Completed!' : 'Mark Complete'}}</button>
+      </div>
+      <button class="back-btn" ng-click="goTo('game-hub')">← Back</button>
+    </section>
+
+    <!-- Scoreboard -->
+    <section class="scene scoreboard" ng-show="scene==='scoreboard'">
+      <div class="top">
+        <h1>30-Day Challenge 🏆</h1>
+        <p class="subtitle">Day {{currentDay}} of 30</p>
+      </div>
+      <div class="leaderboard">
+        <div class="score-card player-1">
+          <h3>Your Score</h3>
+          <p class="big-score">{{playerScores.player1 || 0}}</p>
+          <p class="score-label">Points</p>
+        </div>
+        <div class="vs">VS</div>
+        <div class="score-card player-2">
+          <h3>Partner's Score</h3>
+          <p class="big-score">{{playerScores.player2 || 0}}</p>
+          <p class="score-label">Points</p>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{(currentDay/30)*100}}%"></div>
+      </div>
+      <button class="back-btn" ng-click="goTo('game-hub')">← Back</button>
     </section>
 
     <!-- Voucher scene -->
